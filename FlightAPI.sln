@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.API", "Presentation\FlightAPI.API\FlightAPI.API.csproj", "{37DACDEC-B45B-43E3-978B-F43A810BAEDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAPI.Domain", "Core\FlightAPI.Domain\FlightAPI.Domain.csproj", "{B68CC5B9-0BBD-40C2-9EAF-42BF88E5786E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.Domain", "Core\FlightAPI.Domain\FlightAPI.Domain.csproj", "{B68CC5B9-0BBD-40C2-9EAF-42BF88E5786E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAPI.Application", "Core\FlightAPI.Application\FlightAPI.Application.csproj", "{46135436-410A-4922-96CB-AD1938F500FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.Application", "Core\FlightAPI.Application\FlightAPI.Application.csproj", "{46135436-410A-4922-96CB-AD1938F500FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAPI.Infrastructure", "Infrastructure\FlightAPI.Infrastructure\FlightAPI.Infrastructure.csproj", "{65A7F259-FA1A-413D-8FCC-DE4226331244}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.Infrastructure", "Infrastructure\FlightAPI.Infrastructure\FlightAPI.Infrastructure.csproj", "{65A7F259-FA1A-413D-8FCC-DE4226331244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAPI.Persistence", "Infrastructure\FlightAPI.Persistence\FlightAPI.Persistence.csproj", "{1EA5D9C5-1B0C-4C7A-A946-292A80553D84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.Persistence", "Infrastructure\FlightAPI.Persistence\FlightAPI.Persistence.csproj", "{1EA5D9C5-1B0C-4C7A-A946-292A80553D84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

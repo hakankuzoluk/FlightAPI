@@ -10,6 +10,7 @@ using FlightAPI.Application.ViewModels.Users;
 using FlightAPI.Domain.Entities;
 using FlightAPI.Persistence.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -18,6 +19,7 @@ namespace FlightAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes ="Admin")]
     public class FlightsController : ControllerBase
     {
         readonly private IFlightReadRepository _flightReadRepository;

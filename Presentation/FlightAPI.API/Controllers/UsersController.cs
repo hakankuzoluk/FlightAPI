@@ -1,75 +1,36 @@
-﻿using FlightAPI.Application.Repositories;
-using FlightAPI.Application.ViewModels.Users;
-using FlightAPI.Domain.Entities;
+﻿using FlightAPI.Application.Features.Commands.AppUser.CreateUser;
+using FlightAPI.Application.Features.Commands.AppUser.LoginUser;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Asn1.Crmf;
-using System.Net;
-using System.Net.Http.Headers;
 
 namespace FlightAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
-    {   
-        readonly private IUserReadRepository _userReadRepository;
-        readonly private IUserWriteRepository _userWriteRepository;
+    {
+        readonly IMediator _mediator;
 
-        public UsersController(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository)
+        public UsersController (IMediator mediator)
         {
-            _userReadRepository = userReadRepository;
-            _userWriteRepository = userWriteRepository;
+            _mediator = mediator;
         }
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            return Ok(_userReadRepository.GetAll(false));
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetId(int id)
-        {
-            return Ok(await _userReadRepository.GetByIdAsync(id,false));
-        }
-
 
         [HttpPost]
-        public async Task<IActionResult> Post(VM_User_Create model)
+        public async Task<IActionResult> CreateUser(CreateUserCommandRequest createUserCommandRequest)
         {
-             await _userWriteRepository.AddAsync(new()
-            {
-                UserName = model.UserName,
-                Password = model.Password,
-                Role = model.Role
-            });
-            await _userWriteRepository.SaveAsync();
-            return StatusCode((int)HttpStatusCode.Created);
+            CreateUserCommandResponse response = await _mediator.Send(createUserCommandRequest);
+
+            return Ok(response);
         }
 
-        [HttpPut]
-
-        public async Task<IActionResult> Put(VM_User_Update model)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
-            User user = await _userReadRepository.GetByIdAsync(model.Id);
-            user.UserName = model.UserName;
-            user.Password = model.Password;
-            await _userWriteRepository.SaveAsync();
-            return Ok();
+            LoginUserCommandResponse response = await _mediator.Send(loginUserCommandRequest);
+            return Ok(response);
         }
-        
-        [HttpDelete("{id}")]
-
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _userWriteRepository.RemoveAsync(id);
-            await _userWriteRepository.SaveAsync();
-            return Ok();
-        }
-
-
-   
-
 
     }
 }

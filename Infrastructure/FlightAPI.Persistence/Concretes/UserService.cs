@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FlightAPI.Persistence.Concretes
 {
-    public class UserService : IUserService
+    public class UserService 
     {
         public List<User> GetUsers()
             => new()

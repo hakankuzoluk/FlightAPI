@@ -35,8 +35,9 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlight
 
             return new()
             {
-                TotalCount = totalCount,
-                Flights = flights
+                Flights = flights,
+                TotalCount = totalCount
+                
             };
         }
     }

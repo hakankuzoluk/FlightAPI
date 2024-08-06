@@ -1,5 +1,7 @@
 ﻿using FlightAPI.Domain.Entities;
 using FlightAPI.Domain.Entities.Common;
+using FlightAPI.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FlightAPI.Persistence.Contexts
 {
-    public class FlightAPIDbContext : DbContext
+    public class FlightAPIDbContext : IdentityDbContext <AppUser, AppRole, string>
     {
         public FlightAPIDbContext(DbContextOptions options) : base(options)
         {
