@@ -16,6 +16,7 @@ namespace FlightAPI.Application.Features.Commands.AppUser.LoginUser
     {
 
         public Token Token { get; set; }
+        public string NameSurname { get; set; }
 
     }
 

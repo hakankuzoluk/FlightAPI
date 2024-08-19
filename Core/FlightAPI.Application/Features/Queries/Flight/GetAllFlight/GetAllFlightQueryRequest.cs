@@ -15,5 +15,6 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlight
         public int Size { get; set; } = 5;
 
 
+
     }
 }

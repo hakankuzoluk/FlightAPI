@@ -20,7 +20,7 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlight
 
         public async Task<GetAllFlightQueryResponse> Handle(GetAllFlightQueryRequest request, CancellationToken cancellationToken)
         {
-            var totalCount = _flightReadRepository.GetAll(false).Count();
+            var totalFlightCount = _flightReadRepository.GetAll(false).Count();
             var flights = _flightReadRepository.GetAll(false).Skip(request.Page * request.Size).Take(request.Size).Select(p => new
             {
                 p.Id,
@@ -36,8 +36,8 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlight
             return new()
             {
                 Flights = flights,
-                TotalCount = totalCount
-                
+                TotalFlightCount = totalFlightCount
+
             };
         }
     }

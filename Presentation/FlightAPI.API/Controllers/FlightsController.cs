@@ -19,7 +19,6 @@ namespace FlightAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes ="Admin")]
     public class FlightsController : ControllerBase
     {
         readonly private IFlightReadRepository _flightReadRepository;
@@ -37,6 +36,7 @@ namespace FlightAPI.API.Controllers
         public async Task<IActionResult> Get([FromQuery] GetAllFlightQueryRequest getAllFlightQueryRequest)
         {
 
+           
             GetAllFlightQueryResponse response = await _mediator.Send(getAllFlightQueryRequest);
             return Ok(response);
 
@@ -50,16 +50,23 @@ namespace FlightAPI.API.Controllers
             
             return Ok(response);
         }
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAll()
+        {
+
+        }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Admin")]
         public async Task<IActionResult> Post(CreateFlightCommandRequest createFlightCommandRequest)
         {
             CreateFlightCommandResponse response = await _mediator.Send(createFlightCommandRequest);
             
             return StatusCode((int)HttpStatusCode.Created);
         }
-        [HttpPut]
 
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = "Admin")]
         public async Task<IActionResult> Put([FromBody] UpdateFlightCommandRequest updateFlightCommandRequest)
         {
             UpdateFlightCommandResponse response = await _mediator.Send(updateFlightCommandRequest);
@@ -67,7 +74,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpDelete("{Id}")]
-
+        [Authorize(AuthenticationSchemes = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] RemoveFlightCommendRequest removeFlightCommendRequest)
         {
             RemoveFlightCommendResponse response = await _mediator.Send(removeFlightCommendRequest);

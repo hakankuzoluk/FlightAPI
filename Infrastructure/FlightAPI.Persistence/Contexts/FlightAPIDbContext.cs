@@ -17,8 +17,6 @@ namespace FlightAPI.Persistence.Contexts
         {
         }
 
-        public DbSet<User> Users { get; set; }
-
         public DbSet<Flight> Flights { get; set; }
 
         public DbSet<Reservation> Reservations { get; set; }

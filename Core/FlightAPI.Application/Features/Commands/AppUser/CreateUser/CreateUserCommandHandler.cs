@@ -1,4 +1,6 @@
-﻿using FlightAPI.Application.Exceptions;
+﻿using FlightAPI.Application.Abstractions.Services;
+using FlightAPI.Application.DTOs.User;
+using FlightAPI.Application.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -11,42 +13,31 @@ namespace FlightAPI.Application.Features.Commands.AppUser.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest, CreateUserCommandResponse>
     {
-        readonly UserManager<FlightAPI.Domain.Entities.Identity.AppUser> _userManager;
+        readonly IUserService _userService;
 
-        public CreateUserCommandHandler(UserManager<FlightAPI.Domain.Entities.Identity.AppUser> userManager)
+        public CreateUserCommandHandler(IUserService userService)
         {
 
-        _userManager = userManager; 
+            _userService = userService;
+            
         }
 
-        
+
         public async Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            IdentityResult result = await _userManager.CreateAsync(new() {
-                Id = Guid.NewGuid().ToString(),
-                NameSurname = request.NameSurname,
-                UserName = request.UserName,
-                Email = request.Email,
-            }, request.Pass);
-
-            CreateUserCommandResponse response = new();
-
-            if (result.Succeeded)        
-                return new()
-                {
-                    Succeeded = true,
-                    Message = "Kullanıcı başarıyla oluşturulmuştur."
-                };
-            if (result.Succeeded)
-                response.Message = "Kullanıcı başarıyla oluşturulmuştur. ";
-            else
+            CreateUserResponse response = await _userService.CreateAsync(new()
             {
-                foreach(var error in result.Errors)
-                {
-                    response.Message += $"{error.Code} - {error.Description}\n";
-                }
-            }
-            return response;       
+                Email = request.Email,
+                NameSurname = request.NameSurname,
+                Pass = request.Pass,
+                PassAgain = request.PassAgain,
+                UserName = request.UserName,
+            });
+            return new()
+            {
+                Message = response.Message,
+                Succeeded = response.Succeeded,
+            };       
         }   
     }
 }

@@ -8,7 +8,7 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlight
 {
     public class GetAllFlightQueryResponse
     {
-        public int TotalCount { get; set; }
+        public int TotalFlightCount { get; set; }
         public object Flights { get; set; }
     }
 

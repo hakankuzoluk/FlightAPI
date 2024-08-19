@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightAPI.Persistence", "Infrastructure\FlightAPI.Persistence\FlightAPI.Persistence.csproj", "{1EA5D9C5-1B0C-4C7A-A946-292A80553D84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAPI.SignalR", "Infrastructure\FlightAPI.SignalR\FlightAPI.SignalR.csproj", "{8862057E-D017-4E22-9D98-2EA88079B2CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1EA5D9C5-1B0C-4C7A-A946-292A80553D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EA5D9C5-1B0C-4C7A-A946-292A80553D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EA5D9C5-1B0C-4C7A-A946-292A80553D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8862057E-D017-4E22-9D98-2EA88079B2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8862057E-D017-4E22-9D98-2EA88079B2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8862057E-D017-4E22-9D98-2EA88079B2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8862057E-D017-4E22-9D98-2EA88079B2CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{46135436-410A-4922-96CB-AD1938F500FE} = {AA9865E7-16BD-4DBF-86A5-4CE509C08CF5}
 		{65A7F259-FA1A-413D-8FCC-DE4226331244} = {36E3966F-1DAC-44FF-816B-0F58268870D6}
 		{1EA5D9C5-1B0C-4C7A-A946-292A80553D84} = {36E3966F-1DAC-44FF-816B-0F58268870D6}
+		{8862057E-D017-4E22-9D98-2EA88079B2CE} = {36E3966F-1DAC-44FF-816B-0F58268870D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5F3D5A6-F721-4567-AE63-C0A283946BA4}

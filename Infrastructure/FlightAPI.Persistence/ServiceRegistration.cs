@@ -1,9 +1,10 @@
-﻿using FlightAPI.Application.Abstractions;
+﻿using FlightAPI.Application.Abstractions.Services;
+using FlightAPI.Application.Abstractions.Services.Authentications;
 using FlightAPI.Application.Repositories;
 using FlightAPI.Domain.Entities.Identity;
-using FlightAPI.Persistence.Concretes;
 using FlightAPI.Persistence.Contexts;
 using FlightAPI.Persistence.Repositories;
+using FlightAPI.Persistence.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,12 +31,18 @@ namespace FlightAPI.Persistence
                 // Eklenen diğer yapılandırmalar
             }).AddEntityFrameworkStores<FlightAPIDbContext>().AddDefaultTokenProviders();
 
-            services.AddScoped<IUserReadRepository, UserReadRepository>();
-            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
             services.AddScoped<IReservationReadRepository, ReservationReadRepository>();
             services.AddScoped<IReservationWriteRepository, ReservationWriteRepository>();
             services.AddScoped<IFlightReadRepository, FlightReadRepository>();
             services.AddScoped<IFlightWriteRepository, FlightWriteRepository>();
+            services.AddScoped<IUserService, UserService>();
+
+
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IExternalAuthentication, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
+            services.AddScoped<IReservationService, ReservationService>();
+
         }
     }
 }
