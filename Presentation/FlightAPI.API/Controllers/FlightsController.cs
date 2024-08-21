@@ -2,6 +2,7 @@
 using FlightAPI.Application.Features.Commands.Flight.RemoveFlight;
 using FlightAPI.Application.Features.Commands.Flight.UpdateFlight;
 using FlightAPI.Application.Features.Queries.Flight.GetAllFlight;
+using FlightAPI.Application.Features.Queries.Flight.GetAllFlightV2;
 using FlightAPI.Application.Features.Queries.Flight.GetByIdFlight;
 using FlightAPI.Application.Repositories;
 using FlightAPI.Application.RequestParameters;
@@ -50,10 +51,12 @@ namespace FlightAPI.API.Controllers
             
             return Ok(response);
         }
-        [HttpGet("All")]
-        public async Task<IActionResult> GetAll()
-        {
 
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllFlightQueryV2Request getAllFlightQueryV2Request)
+        {
+            GetAllFlightQueryV2Response response = await _mediator.Send(getAllFlightQueryV2Request);
+            return Ok(response);
         }
 
         [HttpPost]
