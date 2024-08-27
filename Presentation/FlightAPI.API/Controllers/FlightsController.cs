@@ -1,4 +1,7 @@
-﻿using FlightAPI.Application.Features.Commands.Flight.CreateFlight;
+﻿using FlightAPI.Application.Consts;
+using FlightAPI.Application.CustomAttributes;
+using FlightAPI.Application.Enums;
+using FlightAPI.Application.Features.Commands.Flight.CreateFlight;
 using FlightAPI.Application.Features.Commands.Flight.RemoveFlight;
 using FlightAPI.Application.Features.Commands.Flight.UpdateFlight;
 using FlightAPI.Application.Features.Queries.Flight.GetAllFlight;
@@ -60,7 +63,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(AuthenticationSchemes = "Admin")]
+        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Writing, Definition = "Add Flights")]
         public async Task<IActionResult> Post(CreateFlightCommandRequest createFlightCommandRequest)
         {
             CreateFlightCommandResponse response = await _mediator.Send(createFlightCommandRequest);
@@ -69,7 +72,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpPut]
-        [Authorize(AuthenticationSchemes = "Admin")]
+        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Updating, Definition = "Update Flights")]
         public async Task<IActionResult> Put([FromBody] UpdateFlightCommandRequest updateFlightCommandRequest)
         {
             UpdateFlightCommandResponse response = await _mediator.Send(updateFlightCommandRequest);
@@ -77,7 +80,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpDelete("{Id}")]
-        [Authorize(AuthenticationSchemes = "Admin")]
+        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Deleting, Definition = "Remove Flights")]
         public async Task<IActionResult> Delete([FromRoute] RemoveFlightCommendRequest removeFlightCommendRequest)
         {
             RemoveFlightCommendResponse response = await _mediator.Send(removeFlightCommendRequest);

@@ -26,6 +26,7 @@ namespace FlightAPI.Persistence
             {
                 options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 // Eklenen diğer yapılandırmalar
@@ -42,6 +43,7 @@ namespace FlightAPI.Persistence
             services.AddScoped<IExternalAuthentication, AuthService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
             services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IRoleService, RoleService>();
 
         }
     }
