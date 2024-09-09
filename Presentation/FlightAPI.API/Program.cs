@@ -1,3 +1,5 @@
+
+using FlightAPI.API.Filters;
 using FlightAPI.Application;
 using FlightAPI.Application.Validators.Flights;
 using FlightAPI.Infrastructure;
@@ -42,7 +44,11 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
 ));
 
 
-builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
+builder.Services.AddControllers(options => 
+    {
+        options.Filters.Add<ValidationFilter>();
+        options.Filters.Add<RolePermissionFilter>();
+    })
     .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateFlightValidator>())
     .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
     

@@ -2,6 +2,7 @@
 using FlightAPI.Application.Features.Commands.AppUser.LoginUser;
 using FlightAPI.Application.Features.Commands.AppUser.RefreshTokenLogin;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace FlightAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         readonly IMediator _mediator;

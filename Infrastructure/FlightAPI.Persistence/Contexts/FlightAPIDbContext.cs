@@ -21,6 +21,10 @@ namespace FlightAPI.Persistence.Contexts
 
         public DbSet<Reservation> Reservations { get; set; }
 
+        public DbSet<Menu> Menus { get; set; }
+
+        public DbSet<Endpoint> Endpoints { get; set; }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var datas = ChangeTracker

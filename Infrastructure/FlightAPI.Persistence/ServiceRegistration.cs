@@ -36,14 +36,24 @@ namespace FlightAPI.Persistence
             services.AddScoped<IReservationWriteRepository, ReservationWriteRepository>();
             services.AddScoped<IFlightReadRepository, FlightReadRepository>();
             services.AddScoped<IFlightWriteRepository, FlightWriteRepository>();
+            services.AddScoped<IMenuReadRepository, MenuReadRepository>();
+            services.AddScoped<IMenuWriteRepository, MenuWriteRepository>();
+            services.AddScoped<IEndpointReadRepository, EndpointReadRepository>();
+            services.AddScoped<IEndpointWriteRepository, EndpointWriteRepository>();
+
+
+
+
+
             services.AddScoped<IUserService, UserService>();
-
-
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IExternalAuthentication, AuthService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IAuthorizationEndpointService, AuthorizationEndpointService>();
+
+     
 
         }
     }

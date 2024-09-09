@@ -12,5 +12,11 @@ namespace FlightAPI.Application.Abstractions.Services
     {
         Task<CreateUserResponse> CreateAsync(CreateUser model);
         Task UpdateRefreshToken(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate);
+        Task<List<ListUser>> GetAllUsersAsync(int page, int size);
+        int TotalUsersCount {  get; }
+        Task AssignRoleToUserAsync(string userId, string[] roles);
+        Task<string[]> GetRolesToUserAsync(string userIdOrName);
+        Task<bool> HasRolePermissionToEndpointAsync(string name, string code);
+        Task<bool> HasAnyRoleAsync(string userName);
     }
 }

@@ -73,6 +73,19 @@ namespace FlightAPI.Persistence.Services
             }
             return new List<Reservation>();
         }
+        public async Task<List<Reservation>> GetReservationUserAsync()
+        {
+            var user = await ContextUser();
+            if (user != null)
+            {
+                return await _context.Reservations
+                    .Include(r => r.Flight) // Uçuş bilgilerini de dahil et
+                    .Include(r => r.User)
+                    .Where(r => r.UserId == user.Id)
+                    .ToListAsync();
+            }
+            return new List<Reservation>();
+        }
 
         // Rezervasyon iptal etme işlemi
 

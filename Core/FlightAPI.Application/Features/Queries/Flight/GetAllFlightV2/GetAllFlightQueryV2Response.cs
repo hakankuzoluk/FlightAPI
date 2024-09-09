@@ -8,6 +8,6 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlightV2
 {
     public class GetAllFlightQueryV2Response
     {
-        public object Flights { get; set; }
+        public object FlightsAll { get; set; }
     }
 }

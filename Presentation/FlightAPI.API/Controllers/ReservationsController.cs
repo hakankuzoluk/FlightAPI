@@ -28,13 +28,13 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpGet]
-        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Reservations, ActionType =ActionType.Reading, Definition ="Get Reservations")]
         public async Task<IActionResult> GetReservations([FromQuery] GetByIdReservationQueryRequest getByIdReservationQueryRequest)
         {
             List<GetByIdReservationQueryResponse> response = await _mediator.Send(getByIdReservationQueryRequest);
 
             return Ok(response);
         }
+
 
         [HttpGet("all")]
         [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Reservations, ActionType = ActionType.Reading, Definition = "Get All Reservations")]
@@ -45,7 +45,6 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpPost]
-        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Reservations, ActionType = ActionType.Writing, Definition = "Add Reservations")]
         public async Task<IActionResult> AddReservation(CreateReservationCommandRequest createReservationCommandRequest)
         {
             CreateReservationCommandResponse response = await _mediator.Send(createReservationCommandRequest);
@@ -53,28 +52,12 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpDelete("{ReservationId}")]
-        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Reservations, ActionType = ActionType.Deleting, Definition = "Remove Reservations")]
         public async Task<IActionResult> RemoveReservation([FromRoute] RemoveReservationCommandRequest removeReservationCommandRequest)
         {
             RemoveReservationCommandResponse response = await _mediator.Send(removeReservationCommandRequest);
             return Ok(response);
         }
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
     }
 }

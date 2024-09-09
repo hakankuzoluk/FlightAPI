@@ -7,6 +7,7 @@ using FlightAPI.Application.Features.Commands.Flight.UpdateFlight;
 using FlightAPI.Application.Features.Queries.Flight.GetAllFlight;
 using FlightAPI.Application.Features.Queries.Flight.GetAllFlightV2;
 using FlightAPI.Application.Features.Queries.Flight.GetByIdFlight;
+using FlightAPI.Application.Features.Queries.Flight.GetToFlightUser;
 using FlightAPI.Application.Repositories;
 using FlightAPI.Application.RequestParameters;
 using FlightAPI.Application.ViewModels.Flights;
@@ -39,12 +40,19 @@ namespace FlightAPI.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] GetAllFlightQueryRequest getAllFlightQueryRequest)
         {
-
            
             GetAllFlightQueryResponse response = await _mediator.Send(getAllFlightQueryRequest);
             return Ok(response);
+        }
 
-          
+        [HttpGet("User")]
+        [Authorize(AuthenticationSchemes = "Admin")]
+        [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Reading, Definition = "Read Flights")]
+        public async Task<IActionResult> GetToFlightUser([FromQuery] GetToFlightUserQueryRequest getToFlightUserQueryRequest)
+        {
+
+            GetToFlightUserQueryResponse response = await _mediator.Send(getToFlightUserQueryRequest);
+            return Ok(response);
         }
 
         [HttpGet("{Id}")]
@@ -63,6 +71,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = "Admin")]
         [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Writing, Definition = "Add Flights")]
         public async Task<IActionResult> Post(CreateFlightCommandRequest createFlightCommandRequest)
         {
@@ -72,6 +81,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(AuthenticationSchemes = "Admin")]
         [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Updating, Definition = "Update Flights")]
         public async Task<IActionResult> Put([FromBody] UpdateFlightCommandRequest updateFlightCommandRequest)
         {
@@ -80,6 +90,7 @@ namespace FlightAPI.API.Controllers
         }
 
         [HttpDelete("{Id}")]
+        [Authorize(AuthenticationSchemes = "Admin")]
         [AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Flights, ActionType = ActionType.Deleting, Definition = "Remove Flights")]
         public async Task<IActionResult> Delete([FromRoute] RemoveFlightCommendRequest removeFlightCommendRequest)
         {

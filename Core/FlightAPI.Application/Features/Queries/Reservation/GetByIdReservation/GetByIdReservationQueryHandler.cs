@@ -28,7 +28,7 @@ namespace FlightAPI.Application.Features.Queries.Reservation.GetByIdReservation
                 UserName = ra.User.UserName,
                 NameSurname = ra.User.NameSurname,
                 UserId = ra.User.Id,
-                Departure =ra.Flight.Departure,
+                Departure = ra.Flight.Departure,
                 Destination = ra.Flight.Destination,
                 Date = ra.Flight.Date,
                 Price = ra.Flight.Price,

@@ -33,7 +33,7 @@ namespace FlightAPI.Application.Features.Queries.Flight.GetAllFlightV2
 
             var response = new GetAllFlightQueryV2Response
             {
-                Flights = flights,
+                FlightsAll = flights,
                 
             };
 
